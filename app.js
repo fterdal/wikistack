@@ -2,7 +2,7 @@ const express = require('express');
 const nunjucks = require('nunjucks');
 const morgan = require('morgan');
 const router = require('./routes');
-
+const models = require('./models');
 
 const app = express();
 app.use(morgan("short"));
