@@ -1,8 +1,11 @@
 const express = require('express');
 const nunjucks = require('nunjucks');
+const morgan = require('morgan');
 const router = require('./routes');
 
+
 const app = express();
+app.use(morgan("short"));
 
 // point nunjucks to the directory containing templates and turn off caching; configure returns an Environment
 // instance, which we'll want to use to add Markdown support later.
