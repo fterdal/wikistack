@@ -54,4 +54,24 @@ router.get('/:urltitle', function(req, res, next) {
   })
 });
 
+router.get('/:urltitle/similar', (req, res, next) => {
+  return models.Page.findOne({
+    where: {
+      urlTitle: req.params.urltitle,
+    }
+  })
+  .then( (mainPage) => {
+    mainPage.findSimilar()
+    // console.log(mainPage);
+    .then( (pages) => {
+      // Make a template and pass pages
+      // (promise eith an array of pages in it)
+      res.render('similarpages', {mainPage, pages});
+    })
+  })
+  .catch( (err) => {
+    console.log(err)
+  })
+})
+
 module.exports = router;

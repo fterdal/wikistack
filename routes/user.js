@@ -14,7 +14,6 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-  // console.log(req.params.id);
   models.User.findOne( {
     where: {
       id: req.params.id

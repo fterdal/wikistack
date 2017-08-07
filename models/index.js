@@ -49,6 +49,19 @@ Page.findByTags = function(searchTags) {
   })
 }
 
+Page.prototype.findSimilar = function() {
+  return Page.findAll({
+    where: {
+      tags: {
+        $overlap: this.tags
+      },
+      id: {
+        $ne: this.id
+      }
+    }
+  })
+}
+
 Page.hook('beforeValidate', (page, options) => {
   page.urlTitle = utils.urlify(page.title);
 });
