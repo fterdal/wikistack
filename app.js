@@ -19,4 +19,8 @@ app.use(express.static('./public'));
 
 app.use('/', router);
 
-app.listen(3000);
+models.db.sync({force: true})
+.then(() => {
+  app.listen(3000);
+})
+.catch(console.error.bind(console));
