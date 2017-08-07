@@ -23,7 +23,7 @@ app.use(bodyParser.json());
 
 app.use('/', router);
 
-models.db.sync({force: false})
+models.db.sync({force: true})
 .then(() => {
   app.listen(3000);
 })
