@@ -2,6 +2,7 @@ const Sequelize = require('sequelize');
 const db = new Sequelize('postgres://localhost:5432/wikistack', {
   logging: false
 });
+const utils = require('../utils');
 
 /*
 url-safe title
@@ -33,6 +34,10 @@ const Page = db.define("page", {
       return '/wiki/' + this.urlTitle
     }
   }
+});
+
+Page.hook('beforeValidate', (page, options) => {
+  page.urlTitle = utils.urlify(page.title);
 });
 
 const User = db.define("user", {

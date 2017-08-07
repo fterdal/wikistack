@@ -1,7 +1,6 @@
 const express = require('express');
 const models = require('../models')
 const router = express.Router();
-const utils = require('./utils')
 
 router.get('/', (req, res, next) => {
   res.redirect('/');
@@ -22,7 +21,6 @@ router.post('/', (req, res, next) => {
     //console.log('USER ARRAY', userArray);
     return models.Page.create({
       title: req.body.title,
-      urlTitle: utils.urlify(req.body.title),
       content: req.body['page-content'],
       userId: userArray[0].id,
       status: req.body['page-status']
