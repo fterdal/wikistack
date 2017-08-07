@@ -1,5 +1,7 @@
 const express = require('express');
+const models = require('../models')
 const router = express.Router();
+const utils = require('./utils')
 
 router.get('/', (req, res, next) => {
   res.redirect('/');
@@ -10,8 +12,23 @@ router.get('/add', (req, res, next) => {
 })
 
 router.post('/', (req, res, next) => {
-  console.log(req.body);
-  res.json(req.body);
+  return models.User.findOrCreate({
+    where: {
+      email: req.body['author-email'],
+      name: req.body['author-name']
+    }
+  })
+  .then((userArray) => {
+    //console.log('USER ARRAY', userArray);
+    return models.Page.create({
+      title: req.body.title,
+      urlTitle: utils.urlify(req.body.title),
+      content: req.body['page-content'],
+      userId: userArray[0].id,
+      status: req.body['page-status']
+    });
+  })
+    .catch(console.error.bind(console));
 })
 
 module.exports = router;

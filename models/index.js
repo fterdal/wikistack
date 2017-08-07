@@ -1,5 +1,7 @@
 const Sequelize = require('sequelize');
-const db = new Sequelize('postgres://localhost:5432/wikistack');
+const db = new Sequelize('postgres://localhost:5432/wikistack', {
+  logging: false
+});
 
 /*
 url-safe title
@@ -46,5 +48,8 @@ const User = db.define("user", {
     }
   }
 });
+
+User.hasMany(Page);
+Page.belongsTo(User);
 
 module.exports = { Page, User, db };
