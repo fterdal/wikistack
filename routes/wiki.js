@@ -29,11 +29,27 @@ router.post('/', (req, res, next) => {
   .then((row) => {
     res.redirect(row.route)
   })
-    .catch( (err) => {
-      console.error(err);
-      res.sendStatus(400);
-    });
+  .catch( (err) => {
+    console.error(err);
+    res.sendStatus(400);
+  });
 
 })
+
+router.get('/:urltitle', function(req, res, next) {
+  models.Page.findOne({
+    where: {
+      urlTitle: req.params.urltitle
+    }
+  })
+  .then( (page) => {
+     page.getUser().then( (author) => {
+       res.render('wikipage', {page: page, author: author});
+    })
+  })
+  .catch( (err) => {
+    console.log(err)
+  })
+});
 
 module.exports = router;
