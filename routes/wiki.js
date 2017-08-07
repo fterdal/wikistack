@@ -22,6 +22,7 @@ router.post('/', (req, res, next) => {
       title: req.body.title,
       content: req.body['page-content'],
       authorId: userArray[0].id,
+      // userId: userArray[0].id,
       status: req.body['page-status']
     });
   })
@@ -36,15 +37,16 @@ router.post('/', (req, res, next) => {
 })
 
 router.get('/:urltitle', function(req, res, next) {
-  models.Page.findOne({
+  return models.Page.findOne({
     where: {
-      urlTitle: req.params.urltitle
-    }
+      urlTitle: req.params.urltitle,
+    },
+    include: [
+      {model: models.User, as: 'author'}
+    ]
   })
   .then( (page) => {
-     page.getAuthor().then( (author) => {
-       res.render('wikipage', {page: page, author: author});
-    })
+    res.render('wikipage', {page: page});
   })
   .catch( (err) => {
     console.log(err)

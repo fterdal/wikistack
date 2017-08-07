@@ -52,6 +52,12 @@ const User = db.define("user", {
       isEmail: true
     }
   }
+}, {
+  getterMethods: {
+    route() {
+      return '/users/' + this.id;
+    }
+  }
 });
 
 // User.hasMany(Page);

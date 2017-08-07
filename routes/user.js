@@ -14,15 +14,22 @@ router.get('/', (req, res, next) => {
 })
 
 router.get('/:id', (req, res, next) => {
-  console.log(req.params.id);
+  // console.log(req.params.id);
   models.User.findOne( {
     where: {
       id: req.params.id
-    },
-    include: [ models.Page ]
+    }
   })
   .then( (user) => {
-    res.render('userpage', {user});
+    // console.log('user: ', user);
+    models.Page.findAll( {
+      where: {
+        authorId: req.params.id
+      }
+    })
+    .then( (pages) => {
+      res.render('userpage', {user, pages});
+    })
   })
   .catch(console.error.bind(console))
 
