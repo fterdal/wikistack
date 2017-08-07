@@ -1,6 +1,7 @@
 const express = require('express');
 const nunjucks = require('nunjucks');
 const morgan = require('morgan');
+const bodyParser = require('body-parser');
 const router = require('./routes');
 const models = require('./models');
 
@@ -16,6 +17,9 @@ app.set('view engine', 'html');
 app.engine('html', nunjucks.render);
 
 app.use(express.static('./public'));
+
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 app.use('/', router);
 
