@@ -62,10 +62,7 @@ router.get('/:urltitle/similar', (req, res, next) => {
   })
   .then( (mainPage) => {
     mainPage.findSimilar()
-    // console.log(mainPage);
     .then( (pages) => {
-      // Make a template and pass pages
-      // (promise eith an array of pages in it)
       res.render('similarpages', {mainPage, pages});
     })
   })
