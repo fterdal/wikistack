@@ -7,7 +7,6 @@ const models = require('../models');
 router.get('/', (req, res, next) => {
   models.Page.findAll()
   .then((pages) => {
-    console.log(pages);
     res.render('index', {pages});
   })
 })

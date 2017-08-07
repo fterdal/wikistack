@@ -18,7 +18,6 @@ router.post('/', (req, res, next) => {
     }
   })
   .then((userArray) => {
-    //console.log('USER ARRAY', userArray);
     return models.Page.create({
       title: req.body.title,
       content: req.body['page-content'],
@@ -43,7 +42,7 @@ router.get('/:urltitle', function(req, res, next) {
     }
   })
   .then( (page) => {
-     page.getUser().then( (author) => {
+     page.getAuthor().then( (author) => {
        res.render('wikipage', {page: page, author: author});
     })
   })

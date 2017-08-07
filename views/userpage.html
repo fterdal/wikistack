@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h3>{{user.name}}</h3>
+  <h3>{{user.email}}</h3>
+  <hr/>
+
+  <ul class="list-unstyled">
+  {% for page in user.pages %}
+    <li><a href="{{ page.route }}">{{ page.title }}</a></li>
+  {% endfor %}
+  </ul>
+
+  <hr/>
+  <a href="{{page.urlTitle}}/edit" class="btn btn-primary">edit this page</a>
+  <a href="{{page.urlTitle}}/delete" class="btn btn-danger">delete this page</a>
+{% endblock %}
