@@ -22,9 +22,7 @@ router.get('/:id', (req, res, next) => {
     include: [ models.Page ]
   })
   .then( (user) => {
-    console.log(user);
     res.render('userpage', {user});
-    // models.Page.findAll()
   })
   .catch(console.error.bind(console))
 

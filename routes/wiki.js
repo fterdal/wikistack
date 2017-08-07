@@ -21,7 +21,7 @@ router.post('/', (req, res, next) => {
     return models.Page.create({
       title: req.body.title,
       content: req.body['page-content'],
-      userId: userArray[0].id,
+      authorId: userArray[0].id,
       status: req.body['page-status']
     });
   })
