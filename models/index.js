@@ -30,7 +30,7 @@ const Page = db.define("page", {
 }, {
   getterMethods: {
     route() {
-      return '/wiki/' + urlTitle
+      return '/wiki/' + this.urlTitle
     }
   }
 });

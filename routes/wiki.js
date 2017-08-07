@@ -28,7 +28,14 @@ router.post('/', (req, res, next) => {
       status: req.body['page-status']
     });
   })
-    .catch(console.error.bind(console));
+  .then((row) => {
+    res.redirect(row.route)
+  })
+    .catch( (err) => {
+      console.error(err);
+      res.sendStatus(400);
+    });
+
 })
 
 module.exports = router;
