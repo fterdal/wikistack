@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h3>Search By Tags</h3>
+  <hr>
+  <form method="POST" action="/search/">
+
+    <!-- TAGS -->
+    <div class="col-sm-10">
+      <label for="tags" class="col-sm-2 control-label">Tags</label>
+      <input name="tags" type="text" class="form-control"/>
+    </div>
+
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-primary">submit</button>
+    </div>
+
+  </form>
+{% endblock %}

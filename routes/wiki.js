@@ -23,6 +23,7 @@ router.post('/', (req, res, next) => {
       content: req.body['page-content'],
       authorId: userArray[0].id,
       // userId: userArray[0].id,
+      tags: req.body.tags.split(" "),
       status: req.body['page-status']
     });
   })

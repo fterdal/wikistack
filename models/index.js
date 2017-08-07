@@ -39,6 +39,16 @@ const Page = db.define("page", {
   }
 });
 
+Page.findByTags = function(searchTags) {
+  Page.findAll({
+    where: {
+      tags: {
+        $overlap: searchTags
+      }
+    }
+  })
+}
+
 Page.hook('beforeValidate', (page, options) => {
   page.urlTitle = utils.urlify(page.title);
 });

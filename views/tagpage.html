@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+
+<!-- DEPRECATED -->
+{% block content %}
+  <h3>{{tag}}</h3>
+  <hr/>
+
+  <ul class="list-unstyled">
+  {% for page in pages %}
+    <li><a href="{{ page.route }}">{{ page.title }}</a></li>
+  {% endfor %}
+  </ul>
+
+  <hr/>
+{% endblock %}
