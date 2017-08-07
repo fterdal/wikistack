@@ -40,7 +40,7 @@ const Page = db.define("page", {
 });
 
 Page.findByTags = function(searchTags) {
-  Page.findAll({
+  return Page.findAll({
     where: {
       tags: {
         $overlap: searchTags

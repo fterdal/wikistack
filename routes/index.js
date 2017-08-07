@@ -14,6 +14,6 @@ router.get('/', (req, res, next) => {
 
 router.use('/wiki', wiki);
 router.use('/users', user);
-router.use('/search', tags);
+router.use('/tags', tags);
 
 module.exports = router;
